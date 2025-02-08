@@ -1,4 +1,4 @@
-name: Build Project
+name: Primeria aula de GitHub Actions para Build Project
 
 on:
   push:

@@ -24,10 +24,16 @@ jobs:
                cache: true
                cache-dependency-path: ./src/**/packages.lock.json
           
-          - name: Build
+          - name: Build and Test .NET core project
             run: |
                dotnet restore ./src/Todo.Api.sln   
                dotnet build --no-restore ./src/Todo.Api.sln
+               dotnet test --no-build ./src/Todo.Api.sln --no-restore --configuration Release --logger trx --results-directory ./TestResults
+
+          - uses: actions/upload-artifact@v2
+            with:
+               name: dotnet-test-results
+               path: ./TestResults
           
           - name: Set up Node.js
             uses: actions/setup-node@v2

@@ -28,12 +28,12 @@ jobs:
             run: |
                dotnet restore ./src/Todo.Api.sln   
                dotnet build --no-restore ./src/Todo.Api.sln
-               dotnet test --no-build ./src/Todo.Api.sln --no-restore --configuration Release --logger trx --results-directory ./TestResults
+               dotnet test --no-build ./src/Todo.Api.sln --no-restore --configuration Release --logger trx --results-directory "TestResults"
 
           - uses: actions/upload-artifact@v2
             with:
                name: dotnet-test-results
-               path: ./TestResults
+               path: "TestResults"
           
           - name: Set up Node.js
             uses: actions/setup-node@v2
